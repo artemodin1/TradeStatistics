@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -9,7 +10,7 @@ namespace BrokerStatistics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Начинаю работу...");
             Statistics statistics = new Statistics();
         }
     }
@@ -17,10 +18,14 @@ namespace BrokerStatistics
     {
         public Statistics()
         {
-            fileLines = File.ReadAllLines(@"C:\Users\artem\source\repos\BrokerStatistics\Trade.txt");
+            var exePath = AppDomain.CurrentDomain.BaseDirectory;
+            var path = Path.Combine(exePath, "..\\..\\..\\..\\Trade.txt");
+            fileLines = File.ReadAllLines(path);
             DataTable Table = MakeParentTable();
-            //MinMax(Table);
+            MinMax(Table);
             HourRange(Table);
+            //ShowTable(Table);
+            Console.WriteLine("Готово!");
         }
         string[] fileLines;
         private DataTable MakeParentTable()

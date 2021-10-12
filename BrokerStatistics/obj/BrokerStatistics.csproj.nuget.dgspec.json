@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\artem\\source\\repos\\BrokerStatistics\\BrokerStatistics\\BrokerStatistics.csproj": {}
+    "C:\\Users\\artem\\TradeStatistics\\BrokerStatistics\\BrokerStatistics.csproj": {}
   },
   "projects": {
-    "C:\\Users\\artem\\source\\repos\\BrokerStatistics\\BrokerStatistics\\BrokerStatistics.csproj": {
+    "C:\\Users\\artem\\TradeStatistics\\BrokerStatistics\\BrokerStatistics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artem\\source\\repos\\BrokerStatistics\\BrokerStatistics\\BrokerStatistics.csproj",
+        "projectUniqueName": "C:\\Users\\artem\\TradeStatistics\\BrokerStatistics\\BrokerStatistics.csproj",
         "projectName": "BrokerStatistics",
-        "projectPath": "C:\\Users\\artem\\source\\repos\\BrokerStatistics\\BrokerStatistics\\BrokerStatistics.csproj",
+        "projectPath": "C:\\Users\\artem\\TradeStatistics\\BrokerStatistics\\BrokerStatistics.csproj",
         "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artem\\source\\repos\\BrokerStatistics\\BrokerStatistics\\obj\\",
+        "outputPath": "C:\\Users\\artem\\TradeStatistics\\BrokerStatistics\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
