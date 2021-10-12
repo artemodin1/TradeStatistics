@@ -1,0 +1,16 @@
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.exe
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.deps.json
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.runtimeconfig.json
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.runtimeconfig.dev.json
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.dll
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\ref\BrokerStatistics.dll
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\bin\Debug\net5.0\BrokerStatistics.pdb
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.csproj.AssemblyReference.cache
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.AssemblyInfo.cs
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.dll
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\ref\BrokerStatistics.dll
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.pdb
+C:\Users\artem\source\repos\BrokerStatistics\BrokerStatistics\obj\Debug\net5.0\BrokerStatistics.genruntimeconfig.cache
