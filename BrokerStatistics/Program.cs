@@ -16,6 +16,7 @@ namespace BrokerStatistics
     }
     public class Statistics
     {
+        string[] fileLines;
         public Statistics()
         {
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -24,10 +25,10 @@ namespace BrokerStatistics
             DataTable Table = MakeParentTable();
             MinMax(Table);
             HourRange(Table);
+            CheckingFiles(Table);
             //ShowTable(Table);
             Console.WriteLine("Готово!");
         }
-        string[] fileLines;
         private DataTable MakeParentTable()
         {
             DataTable table = new DataTable();
@@ -175,11 +176,11 @@ namespace BrokerStatistics
 
         public void MinMax(DataTable table)
         {
-            if (File.Exists("Task1"))
-                    File.Delete("Task1");
-            var file = File.Create("Task1");
+            if (File.Exists("Task1.txt"))
+                    File.Delete("Task1.txt");
+            var file = File.Create("Task1.txt");
             file.Close();
-            File.AppendAllText("Task1", "    Date       Min    Max \n");
+            File.AppendAllText("Task1.txt", "    Date       Min    Max \n");
             float min = 4294967295;
             float max = 0;
             int Day = Convert.ToInt32(table.Rows[0][table.Columns["Date"]].ToString().Substring(0, 2));
@@ -201,23 +202,24 @@ namespace BrokerStatistics
                 }
                 else
                 {
-                    File.AppendAllText("Task1", Day + " - " + Month + " - " + Year + "  " + min + "  " + max + "\n");
+                    File.AppendAllText("Task1.txt", Day + " - " + Month + " - " + Year + "  " + min + "  " + max + "\n");
                     max = 0;
                     min = 4294967295;
                 }
                 Day = Convert.ToInt32(dateString.Substring(0, 2));
 
             }
-            File.AppendAllText("Task1", Day + " - " + Month + " - " + Year + "  " + min + "  " + max + "\n");
+            File.AppendAllText("Task1.txt", Day + " - " + Month + " - " + Year + "  " + min + "  " + max + "\n");
+            Console.WriteLine("Первое задание выполнено!");
         }
 
         public void HourRange(DataTable table)
         {
-            if (File.Exists("Task2"))
-                File.Delete("Task2");
-            var file = File.Create("Task2");
+            if (File.Exists("Task2.txt"))
+                File.Delete("Task2.txt");
+            var file = File.Create("Task2.txt");
             file.Close();
-            File.AppendAllText("Task2", "Symbol  Description   Date      Time      Open       High      Low     Close    TotalVolume" + "\n");
+            File.AppendAllText("Task2.txt", "Symbol Description Date Time Open High Low Close TotalVolume" + "\n");
             int sumTotalVolume = 0;
             float Open = Convert.ToSingle(table.Rows[0][table.Columns["Open"]]);
             float Close = 0;
@@ -240,13 +242,13 @@ namespace BrokerStatistics
                 else if (min == 4294967295)
                 {
                     int i = Convert.ToInt32(row[table.Columns["id"]]);
-                    File.AppendAllText("Task2", table.Rows[i - 1][table.Columns["Symbol"]].ToString() + ",    " + table.Rows[i - 1][table.Columns["Description"]].ToString() + ",    " + table.Rows[i - 1][table.Columns["Date"]].ToString().Substring(0, 8) + ",    " + table.Rows[i - 1][table.Columns["Time"]].ToString().Substring(0, 2) + "часов,    " + table.Rows[i - 1][table.Columns["Open"]].ToString() + ",    " + table.Rows[i - 1][table.Columns["High"]].ToString() + ",     " + table.Rows[i - 1][table.Columns["Low"]].ToString() + ",   " + table.Rows[i - 1][table.Columns["Close"]].ToString() + ",     " + table.Rows[i - 1][table.Columns["TotalVolume"]].ToString() + "\n");
+                    File.AppendAllText("Task2.txt", table.Rows[i - 1][table.Columns["Symbol"]].ToString() + ", " + table.Rows[i - 1][table.Columns["Description"]].ToString() + ", " + table.Rows[i - 1][table.Columns["Date"]].ToString().Substring(0, 8) + ", " + table.Rows[i - 1][table.Columns["Time"]].ToString().Substring(0, 2) + " часов, " + table.Rows[i - 1][table.Columns["Open"]].ToString() + ", " + table.Rows[i - 1][table.Columns["High"]].ToString() + ", " + table.Rows[i - 1][table.Columns["Low"]].ToString() + ", " + table.Rows[i - 1][table.Columns["Close"]].ToString() + ", " + table.Rows[i - 1][table.Columns["TotalVolume"]].ToString() + "\n");
                 }
                 else
                 {
                     int i = Convert.ToInt32(row[table.Columns["id"]]);
                     Close = Convert.ToSingle(table.Rows[i - 1][table.Columns["Close"]]);
-                    File.AppendAllText("Task2", row[table.Columns["Symbol"]].ToString() + ",    " + row[table.Columns["Description"]].ToString() + ",    " + row[table.Columns["Date"]].ToString().Substring(0, 8) + ",    " + Hour.ToString() + "часов,    " + Open.ToString() + ",    " + max.ToString() + ",     " + min.ToString() + ",   " + Close.ToString() +",     " + sumTotalVolume.ToString() + "\n");
+                    File.AppendAllText("Task2.txt", row[table.Columns["Symbol"]].ToString() + ", " + row[table.Columns["Description"]].ToString() + ", " + row[table.Columns["Date"]].ToString().Substring(0, 8) + ", " + Hour.ToString() + " часов, " + Open.ToString() + ", " + max.ToString() + ", " + min.ToString() + ", " + Close.ToString() +", " + sumTotalVolume.ToString() + "\n");
                     max = 0;
                     min = 4294967295;
                     Open = Convert.ToSingle(row[table.Columns["Open"]]);
@@ -254,8 +256,77 @@ namespace BrokerStatistics
                 }
                 Hour = Convert.ToInt32(dateString.Substring(0, 2));
             }
+            Console.WriteLine("Второе задание выполнено!");
         }
-
+        public void CheckingFiles(DataTable table)
+        {
+            Console.WriteLine("Начинаю выполнять третье задание:");
+            var exePath = AppDomain.CurrentDomain.BaseDirectory;
+            var path = Path.Combine(exePath, "..\\..\\..\\..\\Trade.txt");
+            string[] fileLinesSource = File.ReadAllLines(path);
+            string[] fileLinesTask2 = File.ReadAllLines("Task2.txt");
+            if (File.Exists("Task3_1.txt"))
+                File.Delete("Task3_1.txt");
+            var file1 = File.Create("Task3_1.txt");
+            file1.Close();
+            if (File.Exists("Task3_2.txt"))
+                File.Delete("Task3_2.txt");
+            var file2 = File.Create("Task3_2.txt");
+            file2.Close();
+            if (File.Exists("Task3_3.txt"))
+                File.Delete("Task3_3.txt");
+            var file3 = File.Create("Task3_3.txt");
+            file3.Close();
+            int count = 0;
+            int hourNow;
+            int hourLast = 0;
+            foreach (var lineTask2 in fileLinesTask2)
+            {
+                switch (count)
+                {
+                    case 0:
+                        count++;
+                        break;
+                    default:
+                        var arrLineTask2 = lineTask2.Split(", ");
+                        int countHour = 0;
+                        foreach (var lineSource in fileLinesSource)
+                        {
+                            hourNow = Convert.ToInt16(arrLineTask2[3].Substring(0, 2));
+                            if (hourLast == hourNow)
+                                countHour++;
+                            else
+                                countHour = 0;
+                            var arrLineSource = lineSource.Split(",");
+                            if (Convert.ToDateTime(arrLineTask2[2]) == Convert.ToDateTime(arrLineSource[2]) && Convert.ToInt16(arrLineTask2[3].Substring(0, 2)) == Convert.ToInt16(arrLineSource[3].Substring(0, 2)))
+                            {
+                                float open1 = Convert.ToSingle(arrLineTask2[5]);
+                                float open2 = Convert.ToSingle(arrLineSource[5].Replace('.', ','));
+                                if (Convert.ToSingle(arrLineTask2[4]) == Convert.ToSingle(arrLineSource[4].Replace('.', ',')) && Convert.ToSingle(arrLineTask2[5]) == Convert.ToSingle(arrLineSource[5].Replace('.', ',')) && Convert.ToSingle(arrLineTask2[6]) == Convert.ToSingle(arrLineSource[6].Replace('.', ',')) && Convert.ToSingle(arrLineTask2[7]) == Convert.ToSingle(arrLineSource[7].Replace('.', ',')) && arrLineTask2[8] == arrLineSource[8])
+                                {
+                                    Console.WriteLine(arrLineTask2[2] + ": " + open1.ToString() + " - " + open2.ToString());
+                                }
+                                else if (countHour == 0)
+                                {
+                                    File.AppendAllText("Task3_1.txt", lineTask2 + "\n");
+                                    File.AppendAllText("Task3_3.txt", lineTask2 + "\n");
+                                    File.AppendAllText("Task3_3.txt", lineSource + "\n");
+                                    File.AppendAllText("Task3_2.txt", lineSource + "\n");
+                                }
+                                else
+                                {
+                                    File.AppendAllText("Task3_2.txt", lineSource + "\n");
+                                    File.AppendAllText("Task3_3.txt", lineSource + "\n");
+                                }
+                                hourLast = Convert.ToInt16(arrLineTask2[3].Substring(0, 2));
+                            }
+                            else continue;
+                        }
+                        break;
+                }
+            }
+            Console.WriteLine("Третье задание выполнено!");
+        }
         private static void ShowTable(DataTable table)
         {
             foreach (DataColumn col in table.Columns)
